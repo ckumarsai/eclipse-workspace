@@ -1,0 +1,43 @@
+//import java.util.ArrayList;
+
+/**
+ * creating  AllUsers class to implement the users operations
+ * @author schinthakunta1
+ *
+ */
+public class AllUsers {
+	private String name;
+	private String age;
+	private String profileDescription;
+	private String hobby;
+	//private String[] hobbies = new String[2];
+	//ArrayList<String> al=new ArrayList<String>();
+	/**
+	 * 
+	 * @param name                   name of the person to be created
+	 * @param age                    person age is to be created
+	 * @param profileDescription     Description of the person
+	 * @param hobby
+	 * @param hobbies
+	 */
+	public void createNewBlundrUser(String name,String age,String profileDescription,String hobby) {
+		this.name=name;
+		this.age=age;
+		this.profileDescription=profileDescription;
+		this.hobby=hobby;
+		System.out.println(this);
+	}
+	/**
+	 * Overriding the default toString method of Customer so that user can
+	 * be printed in human readable format.
+	 */
+	public String toString() {
+		String returnToMe = "";
+		returnToMe+="name:"   +this.name+    "\n";
+		returnToMe+="age:"    +this.age+     "\n";
+		returnToMe+="profileDescription:"  +this.profileDescription+    "\n";
+		returnToMe+="hobby:"   +this.hobby+   "\n";
+		return returnToMe;
+	}
+
+}

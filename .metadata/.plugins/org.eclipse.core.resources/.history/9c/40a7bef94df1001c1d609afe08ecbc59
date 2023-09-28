@@ -1,0 +1,45 @@
+/**
+ * This is a class extended the abstract rectangle to override the methods
+ * of abstract rectangle 
+ * @author saikumar
+ *
+ */
+public class Rectangle extends AbstractRectangle{
+	public double length;
+	public double width;
+	public Rectangle (double length,double width) {
+		super(4.0);
+		this.length=length;
+		this.width=width;	
+	}
+	//method to return the are
+	public double area() {
+		return  length*width;
+	}
+	@Override
+	//method to return the perimeter 
+	public double perimeter() {
+		return 2*(length+width);
+	}
+}	
+ class Square extends AbstractRectangle{
+	public double area;
+	public Square(double area) {
+		super(4.0);
+		this.area=area;
+		// TODO Auto-generated constructor stub
+	}
+	public double area() {
+		return  area*area;
+	}
+	@Override
+	//method to return the perimeter of a circle 
+	public double perimeter() {
+		return 4*area;
+	}
+	
+
+}
+
+
+

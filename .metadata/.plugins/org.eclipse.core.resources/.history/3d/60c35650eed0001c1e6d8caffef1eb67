@@ -1,0 +1,25 @@
+/**
+ * This is the implementation of the UserLogin class
+ * @author schinthakunta1
+ *
+ */
+public class UserLogIn {
+	String Username="sai";
+	boolean flag=true;
+	String password="chinthakunta";
+	
+	private void registeer() {
+		Scanner scn=new Scanner(System.in);
+		System.out.println("User Registration Form");
+		System.out.println("===============");
+		
+	}
+
+	public static void main(String[] args) {
+		String Username="sai";
+		boolean flag=true;
+		String password="Chinthakunta";
+		
+	}
+
+}

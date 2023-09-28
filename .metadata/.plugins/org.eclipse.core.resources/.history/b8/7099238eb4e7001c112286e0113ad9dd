@@ -1,0 +1,172 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.ParseException;
+import java.util.Iterator;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser; 
+
+/**
+ * This is a class containing methods to do file IO using JSON.
+ * 
+ * @author Saikumar
+ *
+ */
+public class FileManager {
+
+	static final String DIRECTORY_NAME = "myfiles";
+	static final String FILE_EXTENSION = ".txt";
+
+	private String fileName;
+
+	/**
+	 * Constructor for creating a new File Manager.
+	 * 
+	 * @param fileName
+	 * @throws
+	 */
+	public FileManager(String fileName) throws IllegalArgumentException {
+
+//		this.fileName = fileName;
+//		File dir = new File(DIRECTORY_NAME);
+//		
+//		try {					
+//			dir.mkdirs();										// trying to create a directory
+//		} catch (Exception ex) {
+//			// do nothing, this fails if the directory already exists.
+//		}
+//		
+//		try {
+//			File fileObject = new File(dir, fileName + FILE_EXTENSION);	// trying to create the file in the directory
+//			if (fileObject.createNewFile()) {
+//				System.out.println("File created successfully.");
+//			} else {
+//				throw new IllegalArgumentException("This file " + this.fileName + " already exists.");
+//			}
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//			throw new IllegalArgumentException("This argument " + this.fileName + " is illegal.");
+//		}
+	}
+
+	/**
+	 * This is the helper method to write data into our created file.
+	 */
+
+	public void writeJson() {
+		JSONObject obj = new JSONObject();
+		obj.put("id", "1");
+		obj.put("name ", "saikumar");
+		obj.put("age", "23");
+		obj.put("designation", "it emp");
+		JSONArray Jarray = new JSONArray();
+		Jarray.add(obj);
+//        hobby.add("Eating");
+//        hobby.add("Dancing");
+		// obj.put("hobbies", hobby);
+
+		try (FileWriter file = new FileWriter("Saikumar.dat")) {
+			file.write(Jarray.toJSONString());
+		} catch (IOException e) {
+			e.printStackTrace();
+
+		}
+		//System.out.print(obj);
+
+	}
+
+	/**
+	 * This is a helper method for reading the deatils in the createdfile.
+	 * 
+	 * @throws org.json.simple.parser.ParseException
+	 * @throws ParseException
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 */
+
+	public String readJson() throws org.json.simple.parser.ParseException {
+		JSONArray jaar=new JSONArray();
+		try {
+			jaar= (JSONArray) new JSONParser().parse(new FileReader("Saikumar.dat"));
+
+			// typecasting ob to JSONObject
+		
+
+//	        String firstName = (String) js.get("firstname");
+//	        String lastName = (String) js.get("Lastname");
+//          String city   =(String) js.get("city");
+//	        System.out.println("First name is: " + firstName);
+//	        System.out.println("Last name is: " +lastName);
+//	        System.out.println("City is:"+city);
+			System.out.println();
+			System.out.println(jaar.toJSONString());
+			return jaar.toJSONString();
+
+		} catch (IOException | org.json.simple.parser.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * this is the helper method for count the data in the created file
+	 * 
+	 * @throws org.json.simple.parser.ParseException
+	 */
+
+	public void count() throws org.json.simple.parser.ParseException {
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("Saikumar.dat"));
+			String line = null;
+			int count = 0;
+//			int count1 = 0;
+
+			while ((line = br.readLine()) != null) {
+				count = count + line.length();
+//				count1 = count1 + getCharLength(line);
+				JSONParser parser = new JSONParser();
+				JSONObject json = (JSONObject) parser.parse(line);
+				JSONArray Filedata = (JSONArray) json.get("emp");
+				System.out.println(Filedata);
+				System.out.println("array count:" + Filedata.size());
+//				for(int i=0;i<Filedata.size();i++) {
+//					
+//				}
+
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace(); 
+
+		}
+	}
+
+//	public int getCharLength(String line) {
+//		if(line == null || line.isEmpty()) return 0;
+//		char[] chars = line.toCharArray();
+//		return chars.length;
+//	
+//	}
+	/**
+	 * This is the Helper method to get the data by id
+	 * @param string
+	 * @param search_id
+	 * @return
+	 */
+	public JSONObject getDataById(String string,int search_id) {
+		
+		return null;
+		
+	}
+
+}

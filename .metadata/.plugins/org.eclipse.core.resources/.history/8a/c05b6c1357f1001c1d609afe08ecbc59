@@ -1,0 +1,41 @@
+/**
+ * This is an interface to implement the shape object
+ * @author ayellapu
+ *
+ */
+interface Shape {
+	//method with empty bodies
+	public double area();
+	public double perimeter();
+	public double diameter();
+}
+/**
+ * This is  a class circle implemented from the shape interface
+ * @author ayellapu
+ *
+ */
+class Circle implements Shape{
+	public  double radius;
+	/*
+	 * it is a circle class constructor to initialize the radius variable
+	 */
+	public Circle(double radius) {
+		this.radius = radius;
+	}
+	@Override
+	//method to return the area of a circle
+	public double area() {
+		return Math.PI * radius * radius;
+	}
+	@Override
+	//method to return the perimeter of a circle 
+	public double perimeter() {
+		return 2 * Math.PI * radius;
+	}
+	@Override
+	//method to return the diameter of a circle 
+	public double diameter() {
+		return 2* radius;
+	}
+}
+	

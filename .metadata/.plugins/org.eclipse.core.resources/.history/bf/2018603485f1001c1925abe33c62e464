@@ -1,0 +1,13 @@
+public class ZomatoPage {
+	public static void main(String[] args) {
+		
+	    Address home_address=new Address("1-4/A","Meghalaya","Indira Nagar","Hyderabad","TS","India","535353");
+	    Address office_address=new Address("1-2/z","Sirivennala","Ameerpet","Hyderabad","TS","India","535353");
+	    
+		UserDetails user=new UserDetails("Ziya",123,"ziya@gmail.com","9393939392","Hyderabad",new Address[] {home_address});
+		UserDetails user1=new UserDetails("Ashok",321,"ashok@gmail.com","9347423171","Guntur",new Address[] {home_address,office_address});
+		UserDetails user2=new UserDetails("SaiHero",231,"sai@gmail.com","7238192191","Karimnagar",new Address[] {office_address});
+	
+	}
+
+}

@@ -1,0 +1,192 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+
+/**
+ * Creating the main class to perform user operations
+ * 
+ * @author schinthakunta1
+ *
+ */
+public class Main {
+
+	public static void main(String[] args) {
+//		Users user=new Users();
+//		user.createNewBlundrUser("Sai","20", "I am software engineer", "Coding");
+//		user.createNewBlundrUser("Ashok","25", "I am software developer", "developing");
+//		user.createNewBlundrUser("Anil","21", "I am software engineer", "testing");
+
+		// Create a object
+
+		// Creating UserCollections object
+		UserCollections u = new UserCollections();
+		// BlunderUser Bu =new BlunderUser();
+		Scanner scn = new Scanner(System.in);
+
+		u.createNewBlundrUser("Saikumar", 23, "Software Trainee Engineer", "Playing",
+				new String[] { "Dancing", "carrom", "Watching", }, 56, "biryani", new String[] { "biryani", "chicken" },
+				10000,153);
+
+		u.createNewBlundrUser("chintu", 24, "Software Developer", "Playing",
+				new String[] { "Reading", "eating", "Cooking", }, 76, "chicken", new String[] { "fish", "egg" }, 20000,154);
+
+		u.createNewBlundrUser("chinthakunta", 24, "Software Tester", "Cricket",
+				new String[] { "Cricket", "swimming", "Eating" }, 55, "mutton", new String[] { "icecream", "cake" },
+				30000,135);
+
+		u.createNewBlundrUser("Anil", 45, "Cooking Master", "dancing", new String[] { "Cooking", "Running", "eating" },
+				40, "biryani", new String[] { "fish", "egg" }, 40000,164);
+
+		u.createNewBlundrUser("Sunny", 26, "Software Developer", "dancing",
+				new String[] { "carrom", "dancing", "swimming" }, 76, "chicken", new String[] { "biryani", "chicken" },
+				50000,176);
+
+		u.createNewBlundrUser("ashok", 56, "Software Trainee Engineer", "coding",
+				new String[] { "Dancing", "Playing", "Coding" }, 34, "mutton", new String[] { "mangos", "potato" },
+				60000,154);
+
+		u.createNewBlundrUser("Raju", 39, "Cooking Master", "coding", new String[] { "Dancing", "Playing", "Coding" },
+				34, "veg", new String[] { "banana", "curd" }, 70000,175);
+
+		u.createNewBlundrUser("hari", 45, "painter", "Cricket", new String[] { "painting", "Playing", "Coding" }, 34,
+				"non-veg", new String[] { "apple", "sweets" }, 80000,122);
+
+//		  u.printAllUsers();
+
+		System.out.println("1.Min Weight");
+		System.out.println("2.Max Weight");
+		System.out.println("3. userslist Betweenweight");
+		System.out.println("4.hobbies ");
+		System.out.println("5.hobbies OR");
+		System.out.println("6.hobbies AND");
+		System.out.println("7.Users profession");
+		System.out.println("8.food");
+		System.out.println("9.foodorlist");
+		System.out.println("10.foodAndlist");
+		System.out.println("11.Users Age");
+		System.out.println("12.Users Minimum Age");
+		System.out.println("13.Users maximum Age");
+		System.out.println("14.Users Between Age");
+		System.out.println("15.Users Salary");
+		System.out.println("16.Users Minimum Salary");
+		System.out.println("17.Users Maximum Salary");
+		System.out.println("18.Users Between Salary");
+		System.out.println("19.Users Height");
+		System.out.println("20.Users Minimum Height");
+		System.out.println("21.Users Maximum Height");
+		System.out.println("22.Users Between Height");
+
+		System.out.println("Select the above option");
+		int n = scn.nextInt();
+		if (n == 1) {
+			ArrayList<BlunderUser> weights = u.findMatchedByMinWeight(60);
+			for (BlunderUser minweights : weights) {
+				System.out.println(minweights);
+			}
+		} else if (n == 2) {
+			ArrayList<BlunderUser> weightlist = u.findMatchedByMaxWeight(55);
+			System.out.println(weightlist);
+		}
+
+		else if (n == 3) {
+			ArrayList<BlunderUser> betweenweightlist = u.findMatchedByWeightBetween(30, 60);
+			System.out.println(betweenweightlist);
+		}
+
+		else if (n == 4) {
+			ArrayList<BlunderUser> results = u.getMatch("Playing");
+			System.out.println(results.size());
+		}
+
+		else if (n == 5) {
+			System.out.println("users by hobbyorlist");
+			ArrayList<BlunderUser> hobbylist = u.getHobbyOrList(new String[] { "Cricket", "eating" });
+			for (BlunderUser listofhobbies : hobbylist)
+				System.out.println(listofhobbies);
+		}
+
+		else if (n == 6) {
+			ArrayList<BlunderUser> hobbyandlist = u.getHobbyAndList(new String[] { "Cooking", "eating" });
+			System.out.println(hobbyandlist);
+		}
+
+		else if (n == 7) {
+			ArrayList<BlunderUser> professionlist = u.findMatchByProfession("Software Trainee Engineer");
+			System.out.println(professionlist);
+		} else if (n == 8) {
+			ArrayList<BlunderUser> foodlist = u.getFoodMatch("biryani");
+			System.out.println(foodlist);
+		}
+
+		else if (n == 9) {
+			ArrayList<BlunderUser> foodorlist = u.getFoodorList(new String[] { "biryani", "chicken" });
+			System.out.println(foodorlist);
+		}
+
+		else if (n == 10) {
+			ArrayList<BlunderUser> foodAndList = u.getFoodAndList(new String[] { "fish", "egg" });
+			System.out.println(foodAndList);
+		}
+
+		else if (n == 11) {
+			ArrayList<BlunderUser> userage = u.getExactAge(23);
+			System.out.println(userage);
+		}
+
+		else if (n == 12) {
+			ArrayList<BlunderUser> minagelist = u.getMinimumAge(30);
+			System.out.println(minagelist);
+		}
+
+		else if (n == 13) {
+			ArrayList<BlunderUser> usermaxagelist = u.getMaximumAge(40);
+			System.out.println(usermaxagelist);
+		}
+		
+		else if(n==14) {
+			ArrayList<BlunderUser> betweenAge=u.getBetweenAge(30000,60000);
+			System.out.println(betweenAge);
+		}
+
+		else if (n == 15) {
+			ArrayList<BlunderUser> esalary = u.getExactSalary(30000);
+			System.out.println(esalary);
+		}
+		
+		else if(n==16) {
+			ArrayList<BlunderUser> minSalary=u.getMinimumSalary(30000);
+			System.out.println(minSalary);
+		}
+		else if(n==17) {
+			ArrayList<BlunderUser> maxSalary=u.getmaximumSalary(60000);
+			System.out.println(maxSalary);
+		}
+		
+		else if(n==18) {
+			ArrayList<BlunderUser> betweenSalary=u.getBetweenSalary(30000,60000);
+			System.out.println(betweenSalary);
+		}
+		
+		else if (n == 19) {
+			ArrayList<BlunderUser> eheight = u.getExactHeight(30000);
+			System.out.println(eheight);
+		}
+		
+		else if(n==20) {
+			ArrayList<BlunderUser> minHeight=u.getMinimumHeight(30000);
+			System.out.println(minHeight);
+		}
+		else if(n==21) {
+			ArrayList<BlunderUser> maxHeight=u.getMaximumHeight(60000);
+			System.out.println(maxHeight);
+		}
+		
+		else if(n==22) {
+			ArrayList<BlunderUser> betweenHeight=u.getBetweenHeight(30000,60000);
+			System.out.println(betweenHeight);
+		}
+		
+		
+		
+	}
+}

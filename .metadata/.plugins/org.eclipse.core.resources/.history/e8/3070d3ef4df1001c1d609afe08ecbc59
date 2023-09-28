@@ -1,0 +1,30 @@
+/**
+ * This is a abstract class implements the shape methods
+ * @author ayellapu
+ *
+ */
+
+abstract class AbstractRectangle implements Shape{
+	public  double radius1;
+	/*
+	 * it is a circle class constructor to initialize the radius variable
+	 */
+	public AbstractRectangle(double radius1) {
+		this.radius1 = radius1;
+	}
+	@Override
+	//method to return the area 
+	public double area() {
+		return Math.PI * radius1 * radius1;
+	}
+	@Override
+	//method to return the perimeter  
+	public double perimeter() {
+		return 2 * Math.PI * radius1;
+	}
+	@Override
+	//method to return the diameter  
+	public double diameter() {
+		return 2* radius1;
+	}
+}

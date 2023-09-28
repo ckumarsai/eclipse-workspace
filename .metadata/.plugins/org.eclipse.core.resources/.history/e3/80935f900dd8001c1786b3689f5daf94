@@ -1,0 +1,100 @@
+import java.util.LinkedHashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class UserCollections {
+private static ArrayList<User>listOfAllUsers;
+	
+	public UserCollections() {
+		listOfAllUsers = new ArrayList<User>();
+	}
+	/**
+	 * create a method as createNewBlundrUser 
+	 * @param name
+	 * @param age
+	 * @param designation
+	 * @param hobby
+	 * @param hobbies
+	 * @return
+	 */
+	public boolean createNewBlundrUser(String name,int age, String designation,String hobby,String[] hobbies) {
+		
+			if(!vaidateName(name)) {
+			   System.out.println("Name is already existed");
+			   return false;
+			}
+			User newUser = new User(name,age,designation,hobby,hobbies);
+			listOfAllUsers.add(newUser);
+			return true;
+		
+	}
+	// validation of the parameter "name"
+	
+	/**
+	 * This is a helper method to validate name parameter while creating user object.
+	 * this name is unique
+	 * @param   name  
+	 * @return
+	 */
+	private boolean vaidateName(String name) {
+		Pattern pattern=Pattern.compile("");
+		Matcher matcher=pattern.matcher(name);
+		if(matcher.find())
+			{
+			
+			boolean isDuplicateFound=false;
+			for(int i=0;i<this.listOfAllUsers.size();i++) {
+				User currentUser=this.listOfAllUsers.get(i);
+				if(currentUser.getname().toLowerCase().trim().equals(name.toLowerCase().trim())) {
+					isDuplicateFound=true;
+				}
+			}
+			if(isDuplicateFound) {
+				return false;
+			}else {
+				return true;
+			}
+			}
+		else {
+			return false;
+		}
+	}
+	/**
+	 * This is a helper method to print the all users
+	 */
+	public void printAllUsers() {
+		for (Iterator <User>iter = listOfAllUsers.iterator();
+			iter.hasNext();){
+				User currentUser =(User) iter.next();
+				System.out.println(currentUser);
+			}	
+		}
+	/**
+	 * This is a helper method to print to search the getmatch argument
+	 * @param searchString
+	 * @return returnset
+	 * @return
+	 */
+	public ArrayList<User> getMatch(String searchString) {
+		ArrayList<User>returnSet = new ArrayList<User>();
+		for(User currUser : listOfAllUsers) {
+			
+//			System.out.println(currUser.getname());
+//			System.out.println(currUser.hobby());
+		
+//			System.out.println(searchString);
+			
+			if(currUser.getname().contains(searchString)|| currUser.hobby().contains(searchString)){
+				returnSet.add(currUser);
+				//System.out.println("Matched"); 
+				System.out.println(currUser.getname());
+//			}else {
+//				System.out.println("Mismatch");
+			}
+			//System.out.println("====================="); 
+		}
+	return returnSet;
+ }	
+}

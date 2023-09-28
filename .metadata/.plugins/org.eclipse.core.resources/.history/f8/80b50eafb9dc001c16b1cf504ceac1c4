@@ -1,0 +1,42 @@
+
+public class Qualification {
+	String course;
+	String course_duration;
+	String college_name;
+	String college_location;
+	String course_starting_year;
+	String course_cmplted_year;
+	String branch;
+
+	public Qualification(String course, String course_duration, String college_name, String college_location, String course_starting_year,
+			String course_cmplted_year, String branch) {
+		this.course = course;
+		this.course_duration = course_duration;
+		this.college_name = college_name;
+		this.college_location = college_location;
+		this.course_starting_year = course_starting_year;
+		this.course_cmplted_year = course_cmplted_year;
+		this.branch = branch;
+
+	}
+
+	/**
+	 * override the default toString method of Qualifications so that qualifications
+	 * can be printed in human readable format
+	 */
+
+	@Override
+	public String toString() {
+		String StringToReturn =   "DISPLAY QUALIFICATION DETAILS      \n";
+		StringToReturn += "Course Name             =     " + this.course + "\n";
+		StringToReturn += "Course Duration         =     " + this.course_duration + "\n";
+		StringToReturn += "College Name            =     " + this.college_name + "\n";
+		StringToReturn += "College Location        =     " + this.college_location + "\n";
+		StringToReturn += "Course Starting year    =     " + this.course_starting_year + "\n";
+		StringToReturn += "Course completing year  =     " + this.course_cmplted_year + "\n";
+		StringToReturn += "Branch Name             =     " + this.branch;
+
+		return StringToReturn;
+	}
+
+}

@@ -1,0 +1,100 @@
+import java.util.*;
+
+
+/**
+ * This is the implementation of the UserLogin class
+ * @author schinthakunta1
+ *
+ */
+public class UserLogIn {
+	String username="sai";
+	boolean flag=true;
+	String password="chinthakunta";
+	
+	private void register() {
+		Scanner scn=new Scanner(System.in);
+		System.out.println("User Registration Form");
+		System.out.println("===============");
+		
+		System.out.println("Enter UserName");
+		username=scn.nextLine();
+		System.out.println("Enter password");
+		password=scn.nextLine();
+		System.out.println("Enter confirm password");
+		password=scn.nextLine();
+		System.out.println("Enter Email");
+		String email=scn.nextLine();
+		System.out.println("Enter Mobile number");
+		long phone=scn.nextLong();
+		
+		 System.out.println("Display the User details");
+		 System.out.println("==================");
+		 System.out.println("UserName:"+username);
+		 System.out.println("Password:"+password);
+		 System.out.println("Email:"+email);
+		 System.out.println("Mobilenumber:"+phone);
+		 
+		 System.out.println("==========Registartion Successfull==========");
+	      System.out.print("Do you want to continue:(y/n):");
+	      System.out.println("------------------------------");
+	      char ch = scn.next().charAt(0);
+	      if(ch=='y')
+	      login();
+	      else
+	    	  System.out.println("Thank you for Visiting");
+		
+	}
+	
+	 public void login()
+     {
+   	  System.out.println("This is Login Form");
+   	  System.out.println("=====================");
+          
+         Scanner scn=new Scanner(System.in);
+          
+         System.out.println("Enter User Name: ");//Saikumar
+         String Uname=scn.nextLine();            
+         System.out.println("Enter Password: ");//Chinthakunta
+         String Pass=scn.nextLine();
+         
+         if(username.equals(Uname)&&password.equals(Pass)) {
+       	  System.out.println("User Successfully Logged in");
+       	  System.out.println("Welcome to social media Application");
+       	  
+         }
+         else {
+       	  System.out.println("Invalid username or Password");
+       	  System.out.println("Please enter valid username or password");
+         }
+       	  
+     }
+
+	public static void main(String[] args) {
+		 int choice;
+         Scanner scn=new Scanner(System.in);
+         System.out.println("1. Registration. ");
+         System.out.println("2. Login. ");
+         
+          
+         System.out.println("Enter your Choice");
+         choice=scn.nextInt();
+         
+          
+         if(choice==1)
+         {
+       	  UserLogIn user = new UserLogIn();
+             user.register();
+         }
+         else if(choice==2)
+         {
+        	 UserLogIn user = new UserLogIn();
+             user.login();
+         }
+         else
+         {
+             System.out.println("Choose only 1 or 2 option");
+         }
+		
+	}
+
+}

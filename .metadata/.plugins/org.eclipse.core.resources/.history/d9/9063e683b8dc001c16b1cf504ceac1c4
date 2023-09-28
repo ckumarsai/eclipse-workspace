@@ -1,0 +1,139 @@
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+/**
+ * creating a parent class customer to get all the user details
+ * 
+ * @author saikumar1
+ */
+public class BlunderUser {
+
+	public String name;
+	public int age;
+	public String profession;
+	public String hobby;
+	public String[] hobbies = new String[100];
+	public int weight;
+	public String food;
+	public String[] foods = new String[100];
+	public double salary;
+	public int height;
+	
+	// public String playthings;
+	private LinkedHashSet<BlunderUser> listOfAllUsers = new LinkedHashSet<BlunderUser>();
+
+	/**
+	 * create a method i.e createNewBlunderUser
+	 * 
+	 * @param profileName
+	 * @param age
+	 * @param designation
+	 * @param hobby
+	 */
+	public BlunderUser(String profileName, int age, String designation, String hobby, String[] hobbys, int weight,
+			String food, String[] foods,double salary,int height) {
+		this.name = profileName;
+		this.age = age;
+		this.profession = designation;
+		this.hobby = hobby;
+		this.hobbies = hobbys;
+		this.weight = weight;
+		this.food = food;
+		this.foods = foods;
+		this.salary=salary;
+		this.height=height;
+		// this.profession=profession;
+
+		System.out.println(this);
+
+	}
+
+	/**
+	 * Overriding the default toString method of User so that User can be printed in
+	 * human readable format.
+	 */
+	public String toString() {
+
+		String stringToReturn = "";
+
+		stringToReturn += "               Display the All user details             \n";
+		stringToReturn += "==================================================" + "\n";
+		stringToReturn += "Profile name    :                " + this.name + "\n";
+		stringToReturn += "Age             :                " + this.age + "\n";
+		stringToReturn += "Designation     :                " + this.profession + "\n";
+		stringToReturn += "Hobby           :                " + this.hobby + "\n";
+		stringToReturn += "Food            :                " + this.food + "\n";
+		stringToReturn += "Salary          :                " + this.salary + "\n";
+
+		System.out.println("\n");
+		String hobbyString = "[";
+		for (int i = 0; i < this.hobbies.length; i++) {
+			hobbyString += "\"" + this.hobbies[i] + "\",";
+		}
+		hobbyString += "]";
+
+		stringToReturn += "Hobbies are     :                " + hobbyString + "\n";
+		String foodString = "[";
+		for (int i = 0; i < this.foods.length; i++) {
+			foodString += "\"" + this.foods[i] + "\",";
+		}
+		foodString += "]";
+		stringToReturn += "foods are     :                " + foodString + "\n";
+
+		System.out.println("=====================================================================");
+
+		stringToReturn += "weight			:		        " + this.weight + "\n";
+		stringToReturn += "height			:		        " + this.height + "\n";
+		return stringToReturn;
+	}
+
+	/**
+	 * Getter for the name property
+	 * 
+	 * @return Name of the product as String
+	 */
+	public String getname() {
+		return this.name;
+	}
+
+	/**
+	 * Getter for the age property
+	 * 
+	 * @return age of the product as String
+	 */
+
+	public int age() {
+		return this.age;
+	}
+
+	/**
+	 * Getter for the Description
+	 * 
+	 * @return Description of the product as String
+	 */
+
+	public String designation() {
+		return this.profession;
+	}
+
+	public LinkedHashSet<BlunderUser> getListOfAllUsers() {
+		return listOfAllUsers;
+	}
+
+	public int getage() {
+		return age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String hobby() {
+		return this.hobby;
+	}
+
+	public String gethobbby() {
+		return hobby;
+	}
+}

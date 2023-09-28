@@ -1,0 +1,13 @@
+package SocialMedia;
+
+import saikumar.main;
+
+public class Main{
+	public static void main(String[] args) {
+		
+	Users u1=new Users("sai", "54567543", "hd6fdh", "hi");
+	Users u2=new Users("anil", "54567544", "hd6fddgl", "hello");
+	Users u3=new Users("ashok", "456426548", "gvhjssh", "this is ashok");
+	}
+	
+}

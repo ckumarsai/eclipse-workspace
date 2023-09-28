@@ -1,0 +1,42 @@
+package SocialMedia;
+/**
+ * this is the users class to implement the social media application
+ * @author schinthakunta1
+ *
+ */
+public class Users {
+	private String name;
+	private String phone;
+	private String password;
+	private String status;
+
+	/**
+	 * Constructor for Users class
+	 * @param name					name of the user to be created
+	 * @param password				password of the user to be created
+	 * @param phone                 mobile number of the user
+	 * @param status                status of the user to be created
+	 * */
+	public Users(String name, String phone, String password, String status){
+		this.name=name;
+		this.phone=phone;
+		this.password=password;
+		this.status=status;
+		System.out.println(this);
+	}
+	
+	/**
+	 * Overriding the toString method to print the users in human readable form
+	 */
+	
+	@Override
+   public String toString() {
+	   String stringToReturn=" ";
+	   stringToReturn+="name:              "+this.name +"\n";
+	   stringToReturn+="Phone:             "+this.phone +"\n";
+	   stringToReturn+="status:            "+this.status +"\n";
+	   stringToReturn+="================================";
+	   return stringToReturn;
+   } 
+   
+}

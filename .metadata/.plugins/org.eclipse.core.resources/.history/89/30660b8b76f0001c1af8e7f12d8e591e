@@ -1,0 +1,132 @@
+import java.io.File;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.ListIterator;
+import java.util.Scanner;
+
+//import DMLOperations.Operations;
+
+//import DDLOperations.CreateTable;
+/*
+ * This is the main class to perform all the operations 
+ */
+
+public class Main {
+  public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+	  ArrayList<EmployeeInfo> u = new ArrayList<EmployeeInfo>();
+	  File file = new File("joinees.txt");
+		ObjectOutputStream obj = null;
+		ObjectInputStream obj1 = null;
+		ListIterator li = null;
+	  
+      Scanner scn=new Scanner(System.in);
+	  int choice;
+	  
+	  System.out.println("Enter a choice");
+	  choice=scn.nextInt();
+	  
+	  
+	  //Create a file 
+	  if(choice==1) {
+	  try {
+	      File myObj = new File("joinees.txt");
+	      if (myObj.createNewFile()) {
+	        System.out.println("File created: " + myObj.getName());
+	      } else {
+	        System.out.println("File already exists.");
+	      }
+	    } catch (IOException e) {
+	      System.out.println("An error occurred.");
+	      e.printStackTrace();
+	    }
+	  
+	  }
+	  
+	  //Add the data into the file
+	  if(choice==2) {
+		  System.out.print("Enter a username:");
+		  String username=scn.next();
+		  
+		  System.out.println("Enter the id:");
+		  int id=scn.nextInt();
+		  
+		  System.out.print("Enter the recovery code:");
+		  int rec_code=scn.nextInt();
+		  
+		  System.out.print("Enter the firstname:");
+		  String fname=scn.next();
+		  
+	      System.out.print("Enter the lastname:");
+	      String lname=scn.next();
+	      
+	      System.out.print("Enter the department");
+	      String dept=scn.next();
+	      
+	      System.out.print("Enter the location");
+	      String loc=scn.next();
+	      u.add(new EmployeeInfo(username,id,rec_code,fname,lname,dept,loc));
+
+		
+		try {
+			//Create the object of ObjectOutputStream used to write the Java objects
+			obj = new ObjectOutputStream(new FileOutputStream(file));
+			obj.writeObject(u);
+			obj.close();
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+	  }
+	  //Display the file
+	  if(choice==3) {
+	  if (file.isFile()) {
+			
+			//Create a object of ObjectInputStream used to read the objects 
+			obj1 = new ObjectInputStream(new FileInputStream(file));
+			u = (ArrayList<EmployeeInfo>) obj1.readObject();
+			obj1.close();
+			System.out.println("------------------------------------");
+			li = u.listIterator();
+			while (li.hasNext())
+				System.out.println(li.next());
+
+			System.out.println("------------------------------------");
+		} else {
+			System.out.println("File Not Exists");
+		}
+		
+	  
+  }
+	  System.out.println("************MYSQL DATABASE ************");
+		System.out.println("1.Create the table");
+		System.out.println("2.Insert data into the table");
+		int ch=scn.nextInt();
+		switch(ch) {
+		case 1:
+        String tablename = "CREATE TABLE Newjoinee " +
+	       "(Username varchar(60), "+" Emp_id INTEGER , " +" Emp_firstname VARCHAR(255), " + " Emp_lastname VARCHAR(255), " +" Recoverycode INTEGER, "+" department varchar(40)" + "location varchar(40)"); 
+			CreateNewTable createnewtabelobj=new CreateNewTable();
+			createnewtabelobj.createNewTable(tablename);
+			break;
+		case 2:
+			/*
+			 * call a method to insert record into the table
+			 */
+			String adddata="INSERT INTO EMPLOYEE1 " +
+			        "VALUES ('saikumar', 1, sai, chinthakunta, 30, software, Hyderabad);";
+			Operations insertdataobj=new Operations ();
+			insertdataobj.insertData( adddata);
+			break;
+  }
+		
+}
+}

@@ -1,0 +1,18 @@
+import java.text.ParseException;
+/**
+ * This is the main method to call the methods  which are there in the FileManager class
+ * @author schinthakunta
+ *
+ */
+public class Main {
+
+	public static void main(String[] args) throws ParseException, org.json.simple.parser.ParseException {
+
+		FileManager fm = new FileManager("Saikumar.dat");
+        fm.writeJson();
+        fm.readJson();
+		fm.count();
+		fm.getDataById("Saikumar", 1);
+	}
+
+}

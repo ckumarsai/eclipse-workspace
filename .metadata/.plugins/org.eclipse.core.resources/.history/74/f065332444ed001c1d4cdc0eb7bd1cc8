@@ -1,0 +1,91 @@
+
+import java.util.Scanner;
+import DDLOperations.CreateTable;
+import DDLOperations.DeleteTable;
+import DMLOperations.Operations;
+/**
+ * This is a class to implement all database operations
+ * @author saikumar
+ *
+ */
+public class UserInterface {
+	public static void main(String[] args) {
+		System.out.println("************MYSQL DATABASE ************");
+		System.out.println("1.Create the table");
+		System.out.println("2.Insert data into the table");
+		System.out.println("3.update data into table by ID ");
+		System.out.println("4.Delete record from database by ID");
+		System.out.println("5.Get all data");
+		System.out.println("6.Get record by ID");
+		System.out.println("7.Delete table");
+		System.out.println("8.Count all record");
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter your choice");
+		int ch=sc.nextInt();
+		switch(ch) {
+		case 1:
+		/*
+		 * call a method to create the table in database
+		 */
+		String tablename = "CREATE TABLE EMPLOYEE1 " +
+       "(Emp_id INTEGER , " +" Emp_firstname VARCHAR(255), " + " Emp_lastname VARCHAR(255), " +" Emp_age INTEGER)"; 
+		CreateTable createtabelobj=new CreateTable();
+		createtabelobj.creatTable(tablename);
+		break;
+		case 2:
+			/*
+			 * call a method to insert record into the table
+			 */
+			String adddata="INSERT INTO EMPLOYEE " +
+			        "VALUES (1, 'saikumar', 'kumar', 23)," +"(2, 'ashok', 'reddy',24),"+"(3, 'anil', 'kumar',20),"+
+			        "(4, 'ziya', 'anil',24)," + "(5, 'yashwanth', 'gannarapu', 25);";
+			Operations insertdataobj=new Operations ();
+			insertdataobj.insertData( adddata);
+			break;
+		case 3:
+			/*
+			 * call a method to update data by id
+			 */
+			Operations  updatedataobj=new Operations ();
+			updatedataobj.updateData("EMPLOYEE",2);
+			break;
+		case 4:
+			/*
+			 * call a method delete record by id
+			 * 
+			 */
+			Operations  deletedataobj=new Operations ();
+			deletedataobj.deleteData("EMPLOYEE",3);
+			break;
+		case 5:
+			/*
+			 * call a method to get all records
+			 */
+			Operations  Selectdataobj=new Operations ();
+			Selectdataobj.selectAllData("EMPLOYEE");
+			break;
+		case 6:
+			/*
+			 * call a method to get data by ID
+			 */
+			Operations  SelectdatabyIDobj=new Operations ();
+			SelectdatabyIDobj.selectDataById("EMPLOYEE",4);
+			break;
+		case 7:
+			/*
+			 * call a method to delete the table from database 
+			 */
+			DeleteTable deletetabelobj=new DeleteTable();
+			deletetabelobj.deleteTable("EMPLOYEE");
+			break;
+		case 8:
+			/*
+			 * call a method to count the all record in the table 
+			 */
+			Operations  countallrecordobj=new Operations ();
+			countallrecordobj.countAllRecords("EMPLOYEE");
+			break;
+		}
+		sc.close();
+	}
+}

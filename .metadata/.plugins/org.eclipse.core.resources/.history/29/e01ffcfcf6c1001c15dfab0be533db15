@@ -1,0 +1,9 @@
+package saikumar;
+
+public class CustomerFlipkart {
+
+	public CustomerFlipkart() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,566 @@
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+
+/**
+ * This is the UserCollections class to implement user operations
+ * 
+ * @author schinthakunta
+ *
+ */
+public class UserCollections {
+	private static ArrayList<BlunderUser> listOfAllUsers;
+
+	public UserCollections() {
+		listOfAllUsers = new ArrayList<BlunderUser>();
+	}
+
+	/**
+	 * create a method as createNewBlundrUser
+	 * 
+	 * @param name
+	 * @param age
+	 * @param designation
+	 * @param hobby
+	 * @param hobbies
+	 * @return
+	 */
+	public boolean createNewBlundrUser(String name, int age, String designation, String hobby, String[] hobbies,
+			int weight, String food, String[] foods, int salary, int height) {
+
+		BlunderUser newUser = new BlunderUser(name, age, designation, hobby, hobbies, weight, food, foods, salary,height);
+		listOfAllUsers.add(newUser);
+		return true;
+
+	}
+	// validation of the parameter "name"
+
+	/**
+	 * This is a helper method to validate name parameter while creating user
+	 * object. this name is unique
+	 * 
+	 * @param name
+	 * @return
+	 */
+//	private boolean vaidateName(String name) {
+//
+//		Pattern pattern = Pattern.compile("");
+//		Matcher matcher = pattern.matcher(name);
+//		if (matcher.find()) {
+//
+//			boolean isDuplicateFound = false;
+//			for (int i = 0; i < this.listOfAllUsers.size(); i++) {
+//				BlunderUser currentUser = this.listOfAllUsers.get(i);
+//				if (currentUser.getname().toLowerCase().trim().equals(name.toLowerCase().trim())) {
+//					isDuplicateFound = true;
+//				}
+//			}
+//			if (isDuplicateFound) {
+//				return false;
+//			} else {
+//				return true;
+//			}
+//		} else {
+//			return false;
+//		}
+//	}
+
+	/**
+	 * This is a helper method to print the all users
+	 */
+	public void printAllUsers() {
+		for (Iterator<BlunderUser> iter = listOfAllUsers.iterator(); iter.hasNext();) {
+			BlunderUser currentUser = (BlunderUser) iter.next();
+			System.out.println(currentUser);
+		}
+	}
+
+	/**
+	 * This is a helper method to print to search the getmatch argument
+	 * 
+	 * @param searchString
+	 * @return returnset
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getMatch(String searchString) {
+		ArrayList<BlunderUser> returnSet = new ArrayList<BlunderUser>();
+		for (BlunderUser currUser : listOfAllUsers) {
+
+//			System.out.println(currUser.getname());
+//			System.out.println(currUser.hobby());
+
+//			System.out.println(searchString);
+
+			if (currUser.getname().contains(searchString) || currUser.hobby().contains(searchString)) {
+				returnSet.add(currUser);
+				// System.out.println("Matched");
+				System.out.println(currUser.getname());
+//			}else {
+//				System.out.println("Mismatch");
+			}
+			// System.out.println("=====================");
+		}
+		return returnSet;
+	}
+	/**
+	 * This is the Helper Method to match the Hobbies
+	 * 
+	 * @param hobby1
+	 * @param hobby2
+	 * @return
+	 */
+
+//	public ArrayList<BlunderUser> findMatchedByHobbiesOr(String hobby1, String hobby2) {
+//		ArrayList<BlunderUser> selectedset = new ArrayList<BlunderUser>();
+//		System.out.println("----------------------------------------------------");
+//		System.out.println("----------------------------------------------------");
+//		System.out.println("\n");
+//		System.out.println("        **** SELECTED SET BY HOBBIES OR ******");
+//		System.out.println("----------------------------------------------------");
+//		BlunderUser foundUser = null;
+//		// boolean checkuserlist = false;
+//		for (BlunderUser currentUser : this.listOfAllUsers) {
+//			if ((Arrays.asList(currentUser.hobbies).contains(hobby1))
+//					|| (Arrays.asList(currentUser.hobbies).contains(hobby2))) {
+//				foundUser = currentUser;
+//				selectedset.add(foundUser);
+//			}
+//		}
+//		return selectedset;
+//	}
+
+	/**
+	 * This is a helper method to find the hobbies
+	 * 
+	 * @param hobby2
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getHobbyList(String hobby2) {
+		ArrayList<BlunderUser> hobbylist = new ArrayList<BlunderUser>();
+		BlunderUser founduser = null;
+		for (BlunderUser cuurentuser : listOfAllUsers) {
+			if (cuurentuser.hobby == hobby2) {
+				founduser = cuurentuser;
+				hobbylist.add(founduser);
+			}
+		}
+		return hobbylist;
+	}
+
+	/**
+	 * This is a helper method to find users having either or hobbies
+	 * 
+	 * @param string[] playthings to store the hobbies
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getHobbyOrList(String[] playingthings) {
+		HashSet<BlunderUser> getHobbyORlist = new HashSet<BlunderUser>();
+		System.out.println("=========HobbiesOrList===============");
+		for (int i = 0; i < this.listOfAllUsers.size(); i++) {
+			BlunderUser newuserfound = this.listOfAllUsers.get(i);
+			for (int j = 0; j < newuserfound.hobbies.length; j++) {
+				for (int k = 0; k < playingthings.length; k++) {
+					if (newuserfound.hobbies[j] == playingthings[k]) {
+						getHobbyORlist.add(newuserfound);
+					}
+				}
+			}
+		}
+		return new ArrayList<BlunderUser>(getHobbyORlist);
+	}
+
+	/**
+	 * This is a helper method to find the users having both the hobbies
+	 * 
+	 * @param playthings array of hobbies
+	 * @return array list having users who are having both the hobbies
+	 */
+	public ArrayList<BlunderUser> getHobbyAndList(String[] playthings) {
+		HashSet<BlunderUser> getHobbyANDSet = new HashSet<BlunderUser>();
+		for (int i = 0; i < this.listOfAllUsers.size(); i++) { // iterating through each user in user list
+
+			BlunderUser newuser = this.listOfAllUsers.get(i);
+			List<String> newuserhobbies = Arrays.asList(newuser.hobbies);
+			boolean areAllFound = true;
+			for (String hobbyToSearch : playthings) {
+				if (!newuserhobbies.contains(hobbyToSearch)) {
+					areAllFound = false;
+				}
+			}
+			if (areAllFound) {
+				getHobbyANDSet.add(newuser);
+			}
+		}
+
+		return new ArrayList<BlunderUser>(getHobbyANDSet);
+	}
+
+	/**
+	 * /** This is the Helper method to match the weight in betweeen the users
+	 * weight
+	 * 
+	 * @param minweight
+	 * @param maxweight
+	 * @return
+	 */
+
+	public ArrayList<BlunderUser> findMatchedByWeightBetween(int minweight, int maxweight) {
+		ArrayList<BlunderUser> selectedset = new ArrayList<BlunderUser>();
+		System.out.println("----------------------------------------------------");
+		System.out.println("----------------------------------------------------");
+		System.out.println("\n");
+		System.out.println("        **** SELECTED SET BY WEIGHT BETWEEN ******");
+		System.out.println("----------------------------------------------------");
+		BlunderUser foundUser = null;
+		// boolean checkuserlist = false;
+		for (BlunderUser currentUser : this.listOfAllUsers) {
+			if ((currentUser.weight > minweight) && (currentUser.weight < maxweight)) {
+				foundUser = currentUser;
+				selectedset.add(foundUser);
+			}
+		}
+		return selectedset;
+	}
+
+	/**
+	 * This is the helper method find the users maximum weight
+	 * 
+	 * @param weight
+	 * @return
+	 */
+	public ArrayList<BlunderUser> findMatchedByMaxWeight(int weight) {
+		ArrayList<BlunderUser> selectedset = new ArrayList<BlunderUser>();
+		System.out.println("----------------------------------------------------");
+		System.out.println("----------------------------------------------------");
+		System.out.println("\n");
+		System.out.println("        **** SELECTED SET BY MAXIMUM WEIGHT ******");
+		System.out.println("----------------------------------------------------");
+
+		// boolean checkuserlist = false;
+		for (BlunderUser currentUser : listOfAllUsers) {
+			if (currentUser.weight <= weight) {
+
+				selectedset.add(currentUser);
+			}
+		}
+		return selectedset;
+	}
+
+	/**
+	 * This is the helper method it gives the users minimum weight
+	 * 
+	 * @param weight
+	 * @return
+	 */
+	public ArrayList<BlunderUser> findMatchedByMinWeight(int weight) {
+		ArrayList<BlunderUser> selectedset1 = new ArrayList<BlunderUser>();
+		System.out.println("--------------------------------------------");
+		System.out.println("---------------------------------------------");
+		System.out.println("\n");
+		System.out.println("        **** SELECTED SET BY MINIMUN WEIGHT ******");
+		System.out.println("---------------------------------------------");
+		BlunderUser foundUser = null;
+		// bolean checkuserlist=false;
+		for (BlunderUser currentUser : this.listOfAllUsers) {
+			if (currentUser.weight >= weight) {
+				foundUser = currentUser;
+				selectedset1.add(foundUser);
+			}
+		}
+		return selectedset1;
+
+	}
+
+	/**
+	 * This is the helper method find the users of the profession
+	 * 
+	 * @param profession
+	 * @return
+	 */
+	public ArrayList<BlunderUser> findMatchByProfession(String profession) {
+		ArrayList<BlunderUser> professionlist = new ArrayList<BlunderUser>();
+		for (BlunderUser currentUser : this.listOfAllUsers) {
+			if (currentUser.profession == profession) {
+				professionlist.add(currentUser);
+			}
+		}
+		return professionlist;
+	}
+
+	/**
+	 * This is the helper method to return the users by their food
+	 * 
+	 * @param item
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getFoodMatch(String item) {
+		ArrayList<BlunderUser> userfoodlist = new ArrayList<BlunderUser>();
+		for (BlunderUser currentUser : this.listOfAllUsers) {
+			if (currentUser.food.contains(item)) {
+				userfoodlist.add(currentUser);
+			}
+		}
+		return userfoodlist;
+
+	}
+
+	/**
+	 * This is the helper method to return the users by their food of either one of
+	 * food items
+	 * 
+	 * @param items
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getFoodorList(String[] items) {
+		HashSet<BlunderUser> userFoodorList = new HashSet<BlunderUser>();
+		for (int i = 0; i < this.listOfAllUsers.size(); i++) {
+			BlunderUser newUser = this.listOfAllUsers.get(i);
+			for (int j = 0; j < newUser.foods.length; j++) {
+				for (int k = 0; k < items.length; k++) {
+					if (newUser.foods[j] == items[k]) {
+						userFoodorList.add(newUser);
+					}
+				}
+			}
+
+		}
+		return new ArrayList<BlunderUser>(userFoodorList);
+	}
+
+	/**
+	 * This is the helper method to return the users contains both the food items
+	 * 
+	 * @param items
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getFoodAndList(String[] items) {
+		HashSet<BlunderUser> userfoodandlist = new HashSet<BlunderUser>();
+		for (int i = 0; i < this.listOfAllUsers.size(); i++) {
+			BlunderUser newuser = this.listOfAllUsers.get(i);
+			List<String> newuserfoods = Arrays.asList(newuser.foods);
+			boolean allAreFound = true;
+			for (String foodsToSearch : items) {
+				if (!newuserfoods.contains(foodsToSearch)) {
+					allAreFound = false;
+				}
+			}
+			if (allAreFound) {
+				userfoodandlist.add(newuser);
+			}
+
+		}
+		return new ArrayList<BlunderUser>(userfoodandlist);
+	}
+
+	/**
+	 * This is the helper method to return to users age
+	 * 
+	 * @param age
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getExactAge(int age) {
+		ArrayList<BlunderUser> exactage = new ArrayList<BlunderUser>();
+		System.out.println(" Matched Age List ");
+		for (BlunderUser currentuser : listOfAllUsers) {
+			if (currentuser.age == age)
+				exactage.add(currentuser);
+		}
+		return exactage;
+
+	}
+
+	/**
+	 * This is the helper method to return the minimum age of the user
+	 * 
+	 * @param age
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getMinimumAge(int age) {
+		ArrayList<BlunderUser> minage = new ArrayList<BlunderUser>();
+		System.out.println(" Minimum Age ");
+		for (BlunderUser curruser : listOfAllUsers) {
+			if (curruser.age >= age)
+				minage.add(curruser);
+		}
+		return minage;
+
+	}
+
+	/**
+	 * This is the helper mathod to return the maximum age of the user
+	 * 
+	 * @param age
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getMaximumAge(int age) {
+		ArrayList<BlunderUser> maxage = new ArrayList<BlunderUser>();
+		System.out.println("  Maximum age ");
+		for (BlunderUser curruser : listOfAllUsers) {
+			if (curruser.age <= age)
+				maxage.add(curruser);
+		}
+
+		return maxage;
+	}
+	
+	/**
+	 * This is the helper method to return the between age of the user
+	 * @param minage
+	 * @param maxage
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getBetweenAge(double minage, double maxage){
+		ArrayList<BlunderUser> beetweenage=new ArrayList<BlunderUser>();
+		System.out.println(" Between Salary ");
+		for(BlunderUser currentUser : listOfAllUsers) {
+			if(currentUser.age<=maxage &&  currentUser.age>=minage)
+				beetweenage.add(currentUser);
+		}
+		return beetweenage;
+		
+	}
+	
+	/**
+	 * This is the helper method to return to users height
+	 * 
+	 * @param height
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getExactHeight(int height) {
+		ArrayList<BlunderUser> exactheight = new ArrayList<BlunderUser>();
+		System.out.println(" Matched Height List ");
+		for (BlunderUser currentuser : listOfAllUsers) {
+			if (currentuser.height == height)
+				exactheight.add(currentuser);
+		}
+		return exactheight;
+
+	}
+
+	/**
+	 * This is the helper method to return the minimum height of the user
+	 * 
+	 * @param height
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getMinimumHeight(int height) {
+		ArrayList<BlunderUser> minheight = new ArrayList<BlunderUser>();
+		System.out.println(" Minimum Height ");
+		for (BlunderUser curruser : listOfAllUsers) {
+			if (curruser.height >= height)
+				minheight.add(curruser);
+		}
+		return minheight;
+
+	}
+
+	/**
+	 * This is the helper mathod to return the maximum height of the user
+	 * 
+	 * @param height
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getMaximumHeight(int height) {
+		ArrayList<BlunderUser> maxheight = new ArrayList<BlunderUser>();
+		System.out.println("  Maximum height ");
+		for (BlunderUser curruser : listOfAllUsers) {
+			if (curruser.height <= height)
+				maxheight.add(curruser);
+		}
+
+		return maxheight;
+	}
+	
+	/**
+	 * This is the helper method to return the between height of the user
+	 * @param minheight
+	 * @param maxheight
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getBetweenHeight(double minheight, double maxheight){
+		ArrayList<BlunderUser> beetweenheight=new ArrayList<BlunderUser>();
+		System.out.println(" Between Height ");
+		for(BlunderUser currentUser : listOfAllUsers) {
+			if(currentUser.height<=maxheight &&  currentUser.height>=minheight)
+				beetweenheight.add(currentUser);
+		}
+		return beetweenheight;
+		
+	}
+	
+	/**
+	 * This is the helper method to return the between age of the user
+	 * @param minsalary
+	 * @param maxsalary
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getBetweenSalary(double minsalary, double maxsalary){
+		ArrayList<BlunderUser> beetweensalary=new ArrayList<BlunderUser>();
+		System.out.println(" Between Salary ");
+		for(BlunderUser currentUser : listOfAllUsers) {
+			if(currentUser.salary<=maxsalary &&  currentUser.salary>=minsalary)
+				beetweensalary.add(currentUser);
+		}
+		return beetweensalary;
+		
+	}
+
+
+	/**
+	 * This is the helper method to return the minimum salary of the user
+	 * 
+	 * @param salary
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getMinimumSalary(double salary) {
+		ArrayList<BlunderUser> minimumsalary = new ArrayList<BlunderUser>();
+		System.out.println(" Minimun Salary ");
+		for (BlunderUser currentUser : listOfAllUsers) {
+			if (currentUser.salary >= salary) {
+				minimumsalary.add(currentUser);
+			}
+		}
+		return minimumsalary;
+	}
+	
+	/**
+	 * This is the helper method to return the maximum salary of the user
+	 * @param salary
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getmaximumSalary(double salary){
+		ArrayList<BlunderUser> maximumsalary=new ArrayList<BlunderUser>();
+		System.out.println(" Maximum Salary ");
+		for(BlunderUser currentUser :listOfAllUsers) {
+			if(currentUser.salary<=salary) {
+				maximumsalary.add(currentUser);
+			}
+		}
+		return maximumsalary;
+	}
+	
+	/**
+	 * This is the helper mathod to return the exact salary of the User
+	 * 
+	 * @param salary
+	 * @return
+	 */
+	public ArrayList<BlunderUser> getExactSalary(double salary) {
+		ArrayList<BlunderUser> exactsalary = new ArrayList<BlunderUser>();
+		System.out.println(" Exact Salary ");
+		for (BlunderUser curruser : listOfAllUsers) {
+			if (curruser.salary == salary) {
+				exactsalary.add(curruser);
+			}
+		}
+		return exactsalary;
+
+	}
+	
+	
+}

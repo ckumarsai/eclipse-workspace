@@ -1,0 +1,21 @@
+package saikumar;
+
+public class main { 
+	public static void main(String[] args) {
+		Customer cust=new Customer(null);
+		cust.setcustomerID("1234");
+		cust.setfirstName("saikumar");
+		cust.setlastName("chinthakunta");
+		
+		cust.setlogInUserName("saikumar");
+		cust.signup();
+		String logInUserName;
+		String password;
+		
+		
+		cust.login(logInUserName="saikumar", password="chinthakunta");
+		cust.logout();
+		System.out.println(cust.toString());
+	}
+
+}

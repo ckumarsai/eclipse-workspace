@@ -1,0 +1,44 @@
+/**
+ * This is class to implement the interface and abstract 
+ * @author ayellapu
+ *
+ */
+public class Sample {
+
+	public static void main(String[] args) {
+		double radius=3.0;
+		Circle circleobj=new Circle(radius);
+		/*
+		 * printing the area of a circle 
+		 */
+		System.out.println("area of a  circle"+circleobj.area());
+		/*
+		 * printing the perimeter of  a circle 
+		 */
+		System.out.println("perimeter of a circle"+circleobj.perimeter());
+		/*
+		 * printing the diameter of a circle 
+		 */
+		System.out.println("diameter of a circle"+circleobj.diameter()+"\n");
+		
+		
+		/*
+		 * finding the area and perimeter of a circle 
+		 *  
+		 */
+		//create object of square class
+		Square sqobj=new Square(2.0);
+		System.out.println("area of a square"+sqobj.area);
+		System.out.println("perimeter of a square"+sqobj.perimeter()+"\n");
+		/*
+		 * finding the area and perimeter of a rectangle 
+		 */
+		Rectangle recobj=new Rectangle(3.0,4.2);
+		System.out.println("area of recatnagle"+recobj.area());
+		System.out.println("perimeter of a rectangle "+recobj.perimeter());
+	}
+
+}
+
+
+

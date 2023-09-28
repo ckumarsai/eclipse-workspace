@@ -1,0 +1,12 @@
+import java.util.ArrayList;
+
+public class UserCollection {
+   ArrayList<UserDetails> listOfRestaurents;
+   ArrayList<Restaurent> listOfItems;
+	
+	public UserCollection() {
+		this.listOfRestaurents = new ArrayList<UserDetails>();
+		this.listOfItems=new ArrayList<Restaurent>();
+	}
+	
+	private String[] foodItems

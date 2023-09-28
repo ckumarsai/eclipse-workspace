@@ -1,0 +1,201 @@
+ackage practice;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+/**
+ * This is SudokuPuran class represents a SUDOKU puzzle. And contains
+ * member methods and fields to help solve a 9x9 SuDoKu puzzle. 
+ * @author tashaik
+ */
+public class SudokuPuran{
+	
+	private static final int GRID_SIZE = 9;		// represents the size of grid
+
+	public static void main(String[] args) {
+		
+		SudokuPuran sp = new SudokuPuran();
+		
+		int[][] board = sp.readInputFromTextFile("C:\\Users\\tashaik\\eclipse-workspace\\practice\\src\\practice\\sudoku_puzzle_easy_1.txt");
+		sp.printSudokuHumanReadable(board);
+		
+	
+		
+}
+	/**
+	 * This is a helper function to open a text file with path "filePath" and to read 
+	 * the contents of the text file into a 2-d array for the SuDoKu program.
+	 * @param filePath
+	 * @return
+	 */
+	private int[][] readInputFromTextFile(String filePath) {
+		//intialize a matrix of sudoku
+		int[][] inputBoard = new int[9][9];
+	
+		// read sudoku from a file
+        File file = new File(filePath); 
+        try {
+        	BufferedReader br = new BufferedReader(new FileReader(file));
+
+        	// read it line by line
+            String st;
+            int count = 0;
+            while ((st = br.readLine()) != null) {		// reading each line from file
+            	char[] lineAsCharArray = st.toCharArray();
+            	for (int colIndex=0; colIndex<lineAsCharArray.length; colIndex++) {
+            		int parsedInt = Integer.parseInt(String.valueOf(lineAsCharArray[colIndex]));
+            		inputBoard[count][colIndex] = parsedInt;
+            	}
+                count++;
+        	}
+            br.close();
+            return inputBoard;
+        } catch (FileNotFoundException fnfe) {
+        	System.out.println("We count not find the file, please correct your filename.");
+        } catch (IOException ioe) {
+        	System.out.println("Unable to read line from the file. Check file format!");
+        } catch (NumberFormatException nfe) {
+        	System.out.println("Illegal caracters present in the sudoku file.");
+        }
+        return new int[9][9];
+	}
+	
+	/**
+	 * This is a helper function to print the sudoku board "sudokuBoard" in human
+	 * readable format. It returns nothing. 
+	 * @param sudokuBoard
+	 */
+	private void printSudokuHumanReadable(int[][] sudokuBoard) {
+		System.out.println("+--+--+--+--+--+--+-+");
+		for (int rowIndex = 0; rowIndex < GRID_SIZE; rowIndex++) {
+			
+			String outputStringForRow = "| ";
+			for (int colIndex = 0; colIndex < GRID_SIZE; colIndex++) {
+				outputStringForRow += String.valueOf(sudokuBoard[rowIndex][colIndex] + " ");
+				// System.out.println(sudokuBoard[rowIndex][colIndex]);
+			}
+			System.out.println(outputStringForRow + "|");
+		}
+		System.out.println("+--+--+--+--+--+--+-+");
+	}
+
+
+	/**
+	 * This is a helper method to check if a number "number" exists in the row 
+	 * represented by "row" in the 2-d array "board"
+	 * @param board		Is a 2-d array representing the SuDoKu puzzle.
+	 * @param number	Number to check if present in the row
+	 * @param row		Index of the row in 2-d array to check
+	 * @return			True if number is present in row, false otherwise
+	 */
+	private static boolean isNumberInRow(int[][] board, int number, int row) {
+		for (int i = 0; i < GRID_SIZE; i++) {
+			if (board[row][i] == number) {
+				return true;
+			}
+		}
+		return false;
+	}
+	    	
+	/**
+	 * This is a helper method to check if a number "number" exists in the column
+	 * represented by "column" in the 2-d array "board"
+	 * @param board		Is a 2-d array representing the SuDoKu puzzle.
+	 * @param number	Number to check if present in the column
+	 * @param column	Index of the column in 2-d array to check
+	 * @return			True if number is present in column, false otherwise
+	 */
+	private static boolean isNumberInColumn(int[][] board, int number, int column) {
+		for (int i = 0; i < GRID_SIZE; i++) {
+			if (board[i][column] == number) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * This is a helper method to check if a number "number" exists in the local
+	 * grid box, in the sudoku puzzle represented as 2-d array "board"
+	 * @param board		Is a 2-d array representing the SuDoKu puzzle.
+	 * @param number	Number to check if present in the local grid box
+	 * @param row		Index of the row in 2-d array to check
+	 * @param column	Index of the column in 2-d array to check
+	 * @return			True if number is present in local grid box, false otherwise
+	 */
+	private static boolean isNumberInBox(int[][] board, int number, int row, int column) {
+
+		int localGridBoxRowIndex = row - (row % 3);
+		int localGridBoxColIndex = column - (column % 3);
+
+		for (int i = localGridBoxRowIndex; i < localGridBoxRowIndex + Math.sqrt(GRID_SIZE); i++) {
+			for (int j = localGridBoxColIndex; j < localGridBoxColIndex + Math.sqrt(GRID_SIZE); j++) {
+				if (board[i][j] == number) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * This is a helper agreegator function which checks if the "number" is valid 
+	 * by checking row, column and local grid box. 
+	 * @param board
+	 * @param number
+	 * @param row
+	 * @param column
+	 * @return
+	 */
+	private static boolean isValidPlace(int[][] board, int number, int row, int column) {
+		
+		boolean isNumberInRow = isNumberInRow(board, number, row);
+		boolean isNumberInCol = isNumberInColumn(board, number, column);
+		boolean isNumberInBox = isNumberInBox(board, number, row, column);
+		
+		// if number is neither in row, nor column nor box then it is valid
+		return !(isNumberInRow || isNumberInCol || isNumberInBox);
+	}
+ 
+	/**
+	 * This is a helper agreegator function which is used to solved the board
+	 * by checking row, column and value. 
+	 * @param board
+	 * @param value
+	 * @param row
+	 * @param column
+	 * @return
+	 */
+	private static boolean solveBoard(int[][] board) {
+
+		for (int row = 0; row < GRID_SIZE; row++) {
+
+			for (int column = 0; column < GRID_SIZE; column++) {
+
+				if (board[row][column] == 0) {
+
+					// intialize the value that is the number to try to fit or not
+
+					for (int value = 1; value <= GRID_SIZE; value++) {
+						if (isValidPlace(board, value, row, column)) {
+							board[row][column] = value;
+
+							if (solveBoard(board)) {
+								return true;
+							} else {
+								board[row][column] = 0;
+							}
+						}
+					}
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+}

@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+
+/**
+ * Creating the main class to perform user operations
+ * @author schinthakunta1
+ *
+ */
+public class Main {
+
+	public static void main(String[] args) {
+//		Users user=new Users();
+//		user.createNewBlundrUser("Sai","20", "I am software engineer", "Coding");
+//		user.createNewBlundrUser("Ashok","25", "I am software developer", "developing");
+//		user.createNewBlundrUser("Anil","21", "I am software engineer", "testing");
+		Main main=new Main();
+		main.testUserCreation();
+	}
+		//Create a object
+	  private  void testUserCreation() {
+		// Creating UserCollections object
+		UserCollections u=new UserCollections();
+		
+		u.createNewBlundrUser("Saikumar", 23, "Software Trainee Engineer", "Playing",new String[] {"Dancing","Cricket","Watching"});
+		u.createNewBlundrUser("chintu", 24,"Software Developer", "Playing",new String[] {"Reading","eating","dancing"});
+		u.createNewBlundrUser("chinthakunta",24,"Software Tester","Cricket",new String[] {"Cricket","swimming","Eating"});
+		u.createNewBlundrUser("Anil", 45, "Cooking Master", "Playing",new String[] {"Cooking","Running","Eating"});
+		u.createNewBlundrUser("chinna", 26, "Software Developer", "dancing",new String[] {"carrom","dancing","swimming"});
+		u.createNewBlundrUser("chintu", 23, "Software Test Engineer", "Swimming",new String[] {"Dancing","Playing","Coding"});
+		
+		  u.printAllUsers();
+		
+		 ArrayList<User> results = u.getMatch("Playing");
+		 System.out.println(results.size());
+  }	  
+}

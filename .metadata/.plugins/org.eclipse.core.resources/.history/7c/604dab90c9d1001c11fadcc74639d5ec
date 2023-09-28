@@ -1,0 +1,32 @@
+package SocialMedia;
+
+import saikumar.main;
+
+public class Main{
+	public static void main(String[] args) throws Exception {
+		
+//	Users u1=new Users("sai", "54567543", "hd6fdh", "hi");
+//	Users u2=new Users("anil", "54567544", "hd6fddgl", "hello");
+//	Users u3=new Users("ashok", "456426548", "gvhjssh", "this is ashok");
+	Main main=new Main();
+	Main.Users();
+	}
+
+	private static void Users() throws Exception{
+		try 
+		{ 
+			UserCollection uc = new  UserCollection ();
+			uc.createnewuser ("Jai","6767676878","jai@113");
+			uc.createnewuser ("Sai","7436734674","Sai@123");
+			uc.createnewuser ("Ravi","243567346","Ravi@12");
+			uc.createnewuser ("Ram","9293939393","Ram@123");
+			uc.createnewuser ("Pavan","45645363","pavan@1");
+			uc.printAllUsers();
+	    }
+        catch(Exception e) 
+		{
+        	System.out.println(e.getLocalizedMessage());
+        }
+		
+	}
+}

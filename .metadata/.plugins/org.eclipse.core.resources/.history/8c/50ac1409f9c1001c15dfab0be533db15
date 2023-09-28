@@ -1,0 +1,97 @@
+package saikumar;
+import java.util.Scanner;
+public class CustomerFlipkart {
+	      private void register() {
+		  Scanner scn=new Scanner(System.in);   
+		  System.out.println("Customer Registration form");
+		  System.out.println("=======================");
+		  
+		   
+	      System.out.print("Please Enter User Name: ");
+	      String username=scn.nextLine();
+	      System.out.print("Please Enter Password: ");
+	      String password=scn.nextLine();
+	      System.out.print("Please Enter Email: ");
+	      String email=scn.nextLine();
+	      System.out.print("Please Enter Phone number: ");
+	      long phone=scn.nextLong();
+	      System.out.print("Please enter Address 1:");
+	      String address_1=scn.next();
+	      
+	      System.out.print("Please enter Address 2:");
+	      String address_2=scn.next();
+	     
+	      System.out.print("Please enter pincode:");
+	      long pincode=scn.nextLong();
+	      
+	      System.out.println("Display the Customer details");
+	      System.out.println("------------------------------");
+	      System.out.println("User name:"+username);
+	      System.out.println("Password:"+password);
+	      System.out.println("Email:"+email);
+	      System.out.println("PhoneNumber:"+phone);
+	      System.out.println("address 1:"+address_1);
+	      System.out.println("address 2:"+address_2);
+	      System.out.println("pincode:"+pincode);
+	     
+	      
+	      System.out.println("==========Registartion Successfull==========");
+	      System.out.print("Do you want to continue:(y/n):");
+	      System.out.println("------------------------------");
+	      char ch = scn.next().charAt(0);
+	      if(ch=='y')
+	      login();
+	      else
+	    	  System.out.println("Thank you for Visiting");
+	      
+	     
+	      
+	}
+	      public void login()
+	      {
+	    	  System.out.println("This is Login Form");
+	    	  System.out.println("=====================");
+	           
+	          Scanner scn=new Scanner(System.in);
+	           
+	          System.out.println("Enter User Name: ");//Ashok
+	          String Uname=scn.nextLine();            
+	          System.out.println("Enter Password: ");//Sankar
+	          String Pass=scn.nextLine();
+	          if("Ashok".equals(Uname)&&"Sankar".equals(Pass)) {
+	        	  System.out.println("User Successfully Logged in");
+	        	  System.out.println("Welcome to Flipkart Application");
+	          }
+	          else {
+	        	  System.out.println("Invalid username or Password");
+	        	  System.out.println("Please enter valid username or password");
+	          }
+	        	  
+	      }
+	      public static void main(String[] args) {
+	    	  int choice;
+	          Scanner scn=new Scanner(System.in);
+	          System.out.println("1. Registration. ");
+	          System.out.println("2. Login. ");
+	           
+	          System.out.println("Enter your Choice");
+	          choice=scn.nextInt();
+	          
+	           
+	          if(choice==1)
+	          {
+	        	  CustomerFlipkart user = new CustomerFlipkart();
+	              user.register();
+	          }
+	          else if(choice==2)
+	          {
+	        	  CustomerFlipkart user = new CustomerFlipkart();
+	              user.login();
+	          }
+	          else
+	          {
+	              System.out.println("Choose only 1 or 2 option");
+	          }
+		}
+
+}

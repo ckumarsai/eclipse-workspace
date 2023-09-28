@@ -1,0 +1,147 @@
+import java.util.*;
+
+/**
+ * This is the implementation of the UserLogin class
+ * @author schinthakunta1
+ *
+ */
+public class UserLogIn {
+	String username="sai";
+	boolean flag=true;
+	String password="chinthakunta";
+	String email;
+	Scanner scn=new Scanner(System.in);
+	
+	private void register() {
+		
+		System.out.println("User Registration Form");
+		System.out.println("===============");
+		
+		System.out.println("Enter UserName");
+		username=scn.nextLine();
+		System.out.println("Enter password");
+		password=scn.nextLine();
+		System.out.println("Enter confirm password");
+		password=scn.next();
+		System.out.println("Enter Email");
+		 email=scn.nextLine();
+		System.out.println("Enter Mobile number");
+		long phone=scn.nextLong();
+		
+		 System.out.println("Display the User details");
+		 System.out.println("==================");
+		 System.out.println("UserName:"+username);
+		 System.out.println("Password:"+password);
+		 System.out.println("Email:"+email);
+		 System.out.println("Mobilenumber:"+phone);
+		 
+		 System.out.println("==========Registartion Successfull==========");
+	      System.out.print("Do you want to continue:(y/n):");
+	      System.out.println("------------------------------");
+	      char ch = scn.next().charAt(0);
+	      if(ch=='y')
+	      login();
+	      else
+	    	  System.out.println("Thank you for Visiting");
+		
+	}
+	
+	 public void login()
+     {
+   	  System.out.println("This is Login Form");
+   	  System.out.println("=====================");
+          
+        
+          
+         System.out.println("Enter User Name: ");//Saikumar
+         String Uname=scn.next();            
+         System.out.println("Enter Password: ");//Chinthakunta
+         String Pass=scn.next();
+         
+         // Validation for the user log in if both are same
+         if(username.equals(Uname)&&password.equals(Pass)) {
+       	  System.out.println("User Successfully Logged in");
+       	  System.out.println("Welcome to Facebook  Application");
+       	  
+         }
+         else {
+       	  System.out.println("Invalid username or Password");
+       	  System.out.println("Please enter valid username or password");
+          System.out.println("1.Login");
+  	      System.out.println("2.Forgot password");
+  	      System.out.print("Enter your Choice:");
+  	      int  choice=scn.nextInt();
+  	     
+  	     //goto register method
+  	     if(choice==1){
+  	   	  this.login();
+  	     }
+  	     //goto Login method
+  	     else if(choice==2){
+  	   	  this.forgotpassword();
+  	     }
+       	  
+         }
+       	  
+     }
+
+	public void forgotpassword() {
+		
+		System.out.println("Please enter username:");
+		String Uname=scn.next();
+		
+		System.out.println("Please enter Security key");
+		String Email=scn.next();
+		//Display the username and securitykey
+		//System.out.println("Username:"+username);
+        //System.out.println("Securitykey:"+Skey);
+		if(username.equals(Uname)&&email.equals(Email) ){
+        	  System.out.println("possible to change password");
+        	  changePassword();
+          }
+		else {
+			System.out.println("Try again");
+		    forgotpassword();
+		}
+		
+	}
+
+	public void changePassword() {
+		System.out.print("Enter new password:");
+		password=scn.next();
+		System.out.println("Confirm new password");
+		String conf=scn.next();
+		System.out.println("Again Login");
+		this.login();
+		
+	}
+
+	public static void main(String[] args) {
+		 int choice;
+         Scanner scn=new Scanner(System.in);
+         System.out.println("1. Registration. ");
+         System.out.println("2. Login. ");
+         
+          
+         System.out.println("Enter your Choice");
+         choice=scn.nextInt();
+         
+          
+         if(choice==1)
+         {
+       	  UserLogIn user = new UserLogIn();
+             user.register();
+         }
+         else if(choice==2)
+         {
+        	 UserLogIn user = new UserLogIn();
+             user.login();
+         }
+         else
+         {
+             System.out.println("Choose only 1 or 2 option");
+         }
+		
+	}
+
+}

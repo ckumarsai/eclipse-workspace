@@ -1,0 +1,36 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class ReverseExample {
+	public static void main(String[] args) {
+		/*String string="Innominds";
+		String reverse=new StringBuffer(string).reverse().toString();
+		System.out.println("\nString before reverse: "+string);
+		System.out.println("String after reverse:"+reverse);*/
+		
+		String[] str=new String[10];
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the length of string: ");
+		int n=sc.nextInt();
+		System.out.println("Enter the String:");
+		
+		
+		for(int i=0;i<=n-1;i++) {
+			str[i]=sc.nextLine();
+		}
+		int i=0;
+		String temp;
+		int j=str.length-1;
+		while(i<j) {
+			temp=str[i];
+			str[i]=str[j];
+			str[j]=temp;
+			i++;
+			j--;
+		}
+		//print the reverse string
+		for(int k=0;k<=n-1;k++) {
+			System.out.println(str[i]);
+		}
+	}
+}

@@ -1,0 +1,9 @@
+package SocialMedia;
+
+import java.util.ArrayList;
+
+public class UserCollection {
+	userslist user[];
+	ArrayList al=new ArrayList<Users>();
+
+}

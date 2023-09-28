@@ -1,0 +1,111 @@
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+/** creating a parent class customer to get all the user details
+ * @author saikumar1
+ */
+public class User {
+	
+	public String name;
+	public int age;
+    public String designation;
+    public String hobby;
+   
+    //public String []hobbies;
+   public  String[] hobbies=new String[10];
+   private  LinkedHashSet<User> listOfAllUsers = new LinkedHashSet<User>();
+    /**
+     * create a method i.e createNewBlunderUser
+     * @param profileName
+     * @param age
+     * @param designation
+     * @param hobby
+     */
+    public User(String profileName,int age,String designation,String hobby,String[] hobbys) {
+    	this.name=profileName;
+    	this.age=age;
+    	this.designation=designation;
+    	this.hobby=hobby;
+    	this.hobbies=hobbys;
+    	
+    	System.out.println(this);
+    	
+    }
+       
+    /**
+	 * Overriding the default toString method of User so that User can
+	 * be printed in human readable format.
+	 */
+    public String toString() {
+
+		String stringToReturn = "";
+		
+		
+		stringToReturn    +="               Display the All user details             \n";
+		stringToReturn    +="=================================================="+"\n";
+		stringToReturn    += "Profile name    :                " + this.name            +   "\n";
+		stringToReturn    += "Age             :                " + this.age             +   "\n";
+		stringToReturn    += "Designation     :                " + this.designation     +   "\n";
+		stringToReturn    += "Hobby           :                " + this.hobby           +   "\n";
+		
+
+		
+		System.out.println("\n");
+		String hobbyString="[";
+		for(int i=0;i<this.hobbies.length;i++) {
+			hobbyString+="\"" + this.hobbies[i] +"\",";
+		}
+		hobbyString +="]";
+		
+		stringToReturn    += "Hobbies are     :                " + hobbyString          +   "\n";
+		
+		return stringToReturn;
+	}
+    /**
+	 * Getter for the name property
+	 * @return Name of the product as String
+	 */
+     public String getname() {
+     return this.name;
+     }
+     
+     /**
+      * Getter for the age property
+      * @return age of the product as String
+      */
+     
+     	public int age() {
+     		return this.age;
+     	}
+    
+    /**
+     * Getter for the Description  
+     * @return Description of the product as String
+     */
+     
+     	public String designation() {
+    		return this.designation;
+     	}
+
+     	
+
+     	public LinkedHashSet<User> getListOfAllUsers() {
+     		return listOfAllUsers;
+     	}
+
+     	public int getage() {
+     		return age;
+     	}
+
+     	public String getName() {
+     		return name;
+     	}
+
+     	public String hobby() {
+     		return this.hobby;
+     	}
+     	public String gethobbby() {
+     		return hobby;
+     	}
+}

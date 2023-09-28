@@ -1,0 +1,42 @@
+public class UserDetails {
+	private String username;
+	private int id;
+	private String email;
+	private String phno;
+	private String location;
+	Address[] address;
+	
+	public UserDetails(String name,int id,String email,String phno,String location,Address[] address) {
+		this.username=name;
+		this.id=id;
+		this.email=email;
+		this.phno=phno;
+		this.location=location;
+		this.address=address;
+		System.out.println(this);
+	}
+	
+	public String toString() {
+		String userdetails=" ";
+		userdetails+="Username:"+this.username+"\n";
+		userdetails+="id:"+this.id+"\n";
+		userdetails+="Email:"+this.email+"\n";
+		userdetails+="PhoneNumber:"+this.phno+"\n";
+		userdetails+="Location:"+this.location+"\n";
+		
+		
+		
+		String addressString = "[";
+		for (int i = 0; i < this.address.length; i++) {
+			addressString += "\"" + this.address[i] + "\" " + ",";
+		}
+		addressString += "]";
+		userdetails+="Address:"+addressString+"\n";
+		return userdetails;
+		
+		
+	}
+}
+	
+
+

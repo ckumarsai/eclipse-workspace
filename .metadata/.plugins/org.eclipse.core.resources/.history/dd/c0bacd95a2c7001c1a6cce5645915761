@@ -1,0 +1,25 @@
+package saikumar;
+
+public class Cart {
+	private Product[] carts;
+	private double totalprice;
+	private int cartintoproducts;
+	
+	public Cart() {
+		carts=new Product[3];
+		
+	}
+	public Cart(int Sizeofcart) {
+		carts=new Product[Sizeofcart];
+	}
+	
+	public void addproduct(Product input) {
+		if(cartintoproducts<carts.length) {
+			carts[cartintoproducts]=input;
+			cartintoproducts++;
+		}else
+			System.out.println("shopping cart is fail");
+	}
+	public
+
+}
